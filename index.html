@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Sporttr</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ADWAITA / LIBADWAITA CSS VARIABLES
+   ============================================================ */
+:root {
+  --blue-1:#99c1f1;--blue-2:#62a0ea;--blue-3:#3584e4;--blue-4:#1c71d8;--blue-5:#1a5fb4;
+  --green-1:#8ff0a4;--green-2:#57e389;--green-3:#33d17a;--green-4:#2ec27e;--green-5:#26a269;
+  --yellow-1:#f9f06b;--yellow-2:#f8e45c;--yellow-3:#f6d32d;--yellow-4:#f5c211;--yellow-5:#e5a50a;
+  --orange-1:#ffbe6f;--orange-2:#ffa348;--orange-3:#ff7800;--orange-4:#e66100;--orange-5:#c64600;
+  --red-1:#f66151;--red-2:#ed333b;--red-3:#e01b24;--red-4:#c01c28;--red-5:#a51d2d;
+  --purple-1:#dc8add;--purple-2:#c061cb;--purple-3:#9141ac;--purple-4:#813d9c;--purple-5:#613583;
+  --brown-1:#cdab8f;--brown-2:#b5835a;--brown-3:#986a44;--brown-4:#865e3c;--brown-5:#63452c;
+  --light-1:#ffffff;--light-2:#f6f5f4;--light-3:#deddda;--light-4:#c0bfbc;--light-5:#9a9996;
+  --dark-1:#77767b;--dark-2:#5e5c64;--dark-3:#3d3846;--dark-4:#241f31;--dark-5:#000000;
+
+  --accent-bg-color:#3584e4;--accent-fg-color:#ffffff;--accent-color:#0461be;
+  --accent-blue:#3584e4;--accent-teal:#2190a4;--accent-green:#3a944a;
+  --accent-yellow:#c88800;--accent-orange:#ed5b00;--accent-red:#e62d42;
+  --accent-pink:#d56199;--accent-purple:#9141ac;--accent-slate:#6f8396;
+
+  --window-bg-color:#fafafb;--window-fg-color:rgb(0 0 6/80%);
+  --view-bg-color:#ffffff;--view-fg-color:rgb(0 0 6/80%);
+  --card-bg-color:#ffffff;--card-fg-color:rgb(0 0 6/80%);--card-shade-color:rgba(0,0,0,0.07);
+  --headerbar-bg-color:#ebebeb;--headerbar-fg-color:rgb(0 0 6/80%);
+  --headerbar-border-color:rgb(0 0 6/12%);--headerbar-backdrop-color:#f0f0f0;
+  --headerbar-shade-color:rgba(0,0,0,0.07);
+  --sidebar-bg-color:#ebebeb;--sidebar-fg-color:rgb(0 0 6/80%);
+  --popover-bg-color:#ffffff;--popover-fg-color:rgb(0 0 6/80%);--popover-shade-color:rgba(0,0,0,0.07);
+  --dialog-bg-color:#fafafa;--dialog-fg-color:rgb(0 0 6/80%);
+  --destructive-bg-color:#e01b24;--destructive-fg-color:#ffffff;--destructive-color:#c30000;
+  --success-bg-color:#2ec27e;--success-fg-color:#ffffff;--success-color:#007c3d;
+  --warning-bg-color:#e5a50a;--warning-fg-color:rgb(0 0 0/80%);--warning-color:#905400;
+  --error-bg-color:#e01b24;--error-fg-color:#ffffff;--error-color:#c30000;
+  --shade-color:rgba(0,0,0,0.07);--scrollbar-outline-color:#ffffff;
+  --border-color:rgba(0,0,0,0.12);--dim-opacity:0.55;--disabled-opacity:0.5;
+
+  --radius-xs:4px;--radius-sm:6px;--radius-md:12px;--radius-lg:18px;
+  --headerbar-h:47px;--nav-h:52px;
+  --space-1:6px;--space-2:12px;--space-3:18px;--space-4:24px;
+}
+
+@media (prefers-color-scheme:dark) {
+  :root:not([data-theme="light"]) {
+    --accent-bg-color:#3584e4;--accent-fg-color:#ffffff;--accent-color:#81d0ff;
+    --window-bg-color:#222226;--window-fg-color:#ffffff;
+    --view-bg-color:#1d1d20;--view-fg-color:#ffffff;
+    --card-bg-color:#2e2e32;--card-fg-color:#ffffff;--card-shade-color:rgba(0,0,0,0.36);
+    --headerbar-bg-color:#2e2e32;--headerbar-fg-color:#ffffff;
+    --headerbar-border-color:rgba(0,0,0,0.8);--headerbar-backdrop-color:#28282c;
+    --headerbar-shade-color:rgba(0,0,0,0.36);
+    --sidebar-bg-color:#2e2e32;--sidebar-fg-color:#ffffff;
+    --popover-bg-color:#363639;--popover-fg-color:#ffffff;--popover-shade-color:rgba(0,0,0,0.36);
+    --dialog-bg-color:#363639;--dialog-fg-color:#ffffff;
+    --destructive-bg-color:#c01c28;--destructive-fg-color:#ffffff;--destructive-color:#ff938c;
+    --success-bg-color:#26a269;--success-fg-color:#ffffff;--success-color:#78e9ab;
+    --warning-bg-color:#cd9309;--warning-fg-color:rgb(0 0 0/80%);--warning-color:#ffc252;
+    --error-bg-color:#c01c28;--error-fg-color:#ffffff;--error-color:#ff938c;
+    --shade-color:rgba(0,0,0,0.36);--scrollbar-outline-color:rgba(0,0,0,0.5);
+    --border-color:rgba(255,255,255,0.1);
+  }
+}
+:root[data-theme="dark"] {
+  --accent-bg-color:#3584e4;--accent-fg-color:#ffffff;--accent-color:#81d0ff;
+  --window-bg-color:#222226;--window-fg-color:#ffffff;
+  --view-bg-color:#1d1d20;--view-fg-color:#ffffff;
+  --card-bg-color:#2e2e32;--card-fg-color:#ffffff;--card-shade-color:rgba(0,0,0,0.36);
+  --headerbar-bg-color:#2e2e32;--headerbar-fg-color:#ffffff;
+  --headerbar-border-color:rgba(0,0,0,0.8);--headerbar-backdrop-color:#28282c;
+  --headerbar-shade-color:rgba(0,0,0,0.36);
+  --sidebar-bg-color:#2e2e32;--sidebar-fg-color:#ffffff;
+  --popover-bg-color:#363639;--popover-fg-color:#ffffff;--popover-shade-color:rgba(0,0,0,0.36);
+  --dialog-bg-color:#363639;--dialog-fg-color:#ffffff;
+  --destructive-bg-color:#c01c28;--destructive-fg-color:#ffffff;--destructive-color:#ff938c;
+  --success-bg-color:#26a269;--success-fg-color:#ffffff;--success-color:#78e9ab;
+  --warning-bg-color:#cd9309;--warning-fg-color:rgb(0 0 0/80%);--warning-color:#ffc252;
+  --error-bg-color:#c01c28;--error-fg-color:#ffffff;--error-color:#ff938c;
+  --shade-color:rgba(0,0,0,0.36);--scrollbar-outline-color:rgba(0,0,0,0.5);
+  --border-color:rgba(255,255,255,0.1);
+}
+:root[data-theme="light"] {
+  --accent-bg-color:#3584e4;--accent-fg-color:#ffffff;--accent-color:#0461be;
+  --window-bg-color:#fafafb;--window-fg-color:rgb(0 0 6/80%);
+  --view-bg-color:#ffffff;--view-fg-color:rgb(0 0 6/80%);
+  --card-bg-color:#ffffff;--card-fg-color:rgb(0 0 6/80%);--card-shade-color:rgba(0,0,0,0.07);
+  --headerbar-bg-color:#ebebeb;--headerbar-fg-color:rgb(0 0 6/80%);
+  --headerbar-border-color:rgb(0 0 6/12%);--headerbar-backdrop-color:#f0f0f0;
+  --headerbar-shade-color:rgba(0,0,0,0.07);
+  --sidebar-bg-color:#ebebeb;--sidebar-fg-color:rgb(0 0 6/80%);
+  --popover-bg-color:#ffffff;--popover-fg-color:rgb(0 0 6/80%);--popover-shade-color:rgba(0,0,0,0.07);
+  --dialog-bg-color:#fafafa;--dialog-fg-color:rgb(0 0 6/80%);
+  --destructive-bg-color:#e01b24;--destructive-fg-color:#ffffff;--destructive-color:#c30000;
+  --success-bg-color:#2ec27e;--success-fg-color:#ffffff;--success-color:#007c3d;
+  --warning-bg-color:#e5a50a;--warning-fg-color:rgb(0 0 0/80%);--warning-color:#905400;
+  --error-bg-color:#e01b24;--error-fg-color:#ffffff;--error-color:#c30000;
+  --shade-color:rgba(0,0,0,0.07);--scrollbar-outline-color:#ffffff;--border-color:rgba(0,0,0,0.12);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Cantarell',system-ui,sans-serif;font-size:10.5pt;
+  line-height:1.4;background:var(--window-bg-color);color:var(--window-fg-color);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+button{font-family:inherit;font-size:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit;font-size:inherit}
+*{outline:none}
+*:focus-visible{outline:2px solid var(--accent-bg-color);outline-offset:2px;border-radius:var(--radius-sm)}
+
+/* ============================================================
+   HEADER BAR
+   ============================================================ */
+.headerbar{
+  position:fixed;top:0;left:0;right:0;height:var(--headerbar-h);
+  background:var(--headerbar-bg-color);color:var(--headerbar-fg-color);
+  border-bottom:1px solid var(--headerbar-border-color);
+  display:flex;align-items:center;padding:0 var(--space-1);z-index:100;gap:var(--space-1);
+  -webkit-app-region:drag;box-shadow:0 1px 0 var(--headerbar-shade-color)}
+.headerbar-center{
+  flex:1;text-align:center;font-weight:700;font-size:10.5pt;pointer-events:none;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 var(--space-1)}
+.headerbar-start,.headerbar-end{
+  display:flex;align-items:center;gap:2px;min-width:80px;flex-shrink:0;-webkit-app-region:no-drag}
+.headerbar-end{justify-content:flex-end}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--space-1);
+  padding:5px 12px;border-radius:var(--radius-sm);
+  background:var(--card-bg-color);color:var(--window-fg-color);
+  border:1px solid var(--border-color);min-height:34px;font-weight:400;
+  transition:filter .1s,background .1s;cursor:pointer;-webkit-app-region:no-drag;
+  white-space:nowrap;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.btn:hover{filter:brightness(.96)}
+.btn:active{filter:brightness(.88)}
+.btn.flat{background:transparent;border-color:transparent;box-shadow:none}
+.btn.flat:hover{background:var(--shade-color);filter:none}
+.btn.flat:active{background:color-mix(in srgb,var(--shade-color) 170%,transparent)}
+.btn.circular{border-radius:50%;padding:0;width:34px;height:34px}
+.btn.suggested-action{
+  background:var(--accent-bg-color);color:var(--accent-fg-color);border-color:transparent;
+  font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.btn.suggested-action:hover{filter:brightness(.92)}
+.btn.destructive-action{
+  background:var(--destructive-bg-color);color:var(--destructive-fg-color);border-color:transparent;
+  font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.btn.destructive-action:hover{filter:brightness(.92)}
+.btn:disabled,.btn[disabled]{opacity:var(--disabled-opacity);pointer-events:none}
+
+/* ============================================================
+   VIEW SWITCHER
+   ============================================================ */
+.view-switcher{
+  position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);
+  background:var(--headerbar-bg-color);border-top:1px solid var(--headerbar-border-color);
+  display:flex;z-index:100;padding-bottom:env(safe-area-inset-bottom,0)}
+.vs-btn{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2px;background:transparent;color:var(--headerbar-fg-color);opacity:var(--dim-opacity);
+  font-size:9pt;padding:var(--space-1) 0;cursor:pointer;
+  transition:opacity .15s,color .15s;position:relative}
+.vs-btn svg{width:20px;height:20px}
+.vs-btn.active{opacity:1;color:var(--accent-color)}
+.vs-btn.active::before{
+  content:'';position:absolute;top:6px;width:28px;height:3px;
+  border-radius:2px;background:var(--accent-bg-color)}
+
+/* ============================================================
+   MAIN LAYOUT
+   ============================================================ */
+.main{
+  padding-top:calc(var(--headerbar-h) + var(--space-2));
+  padding-bottom:calc(var(--nav-h) + var(--space-2) + env(safe-area-inset-bottom,0));
+  min-height:100dvh}
+.page{
+  display:none;padding:0 var(--space-2) var(--space-2);
+  max-width:620px;margin:0 auto;animation:page-in .18s ease}
+.page.active{display:block}
+@keyframes page-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* ============================================================
+   DATE BANNER
+   ============================================================ */
+.date-banner{padding:var(--space-2) 0 var(--space-3)}
+.date-banner h2{font-size:20pt;font-weight:700;letter-spacing:-.5px;line-height:1.1}
+.date-banner p{font-size:10pt;opacity:var(--dim-opacity);margin-top:3px}
+
+/* ============================================================
+   SECTION LABEL
+   ============================================================ */
+.section-label{
+  font-size:8.5pt;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
+  opacity:var(--dim-opacity);padding:0 var(--space-2) var(--space-1)}
+
+/* ============================================================
+   BOXED LIST
+   ============================================================ */
+.boxed-list{
+  background:var(--card-bg-color);border-radius:var(--radius-md);
+  border:1px solid var(--border-color);overflow:hidden;
+  box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.row{
+  display:flex;align-items:center;padding:0 var(--space-3);gap:var(--space-2);
+  border-bottom:1px solid var(--border-color);min-height:60px;
+  transition:background .1s;position:relative}
+.row:last-child{border-bottom:none}
+.row:hover{background:var(--shade-color)}
+.row.activatable{cursor:pointer}
+.row-icon{
+  width:42px;height:42px;border-radius:var(--radius-sm);
+  display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.row-content{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.row-title{font-size:10.5pt;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row-subtitle{font-size:9pt;opacity:var(--dim-opacity)}
+.row-end{display:flex;align-items:center;gap:var(--space-1);flex-shrink:0}
+.row.row-done .row-title{opacity:var(--dim-opacity);text-decoration:line-through}
+
+/* ============================================================
+   CHECK TOGGLE
+   ============================================================ */
+.check-toggle{
+  width:34px;height:34px;border-radius:50%;
+  border:2px solid var(--border-color);background:transparent;color:transparent;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;
+  transition:background .18s cubic-bezier(.2,0,0,1.4),border-color .15s,color .15s,transform .12s}
+.check-toggle svg{width:18px;height:18px}
+.check-toggle:hover{border-color:var(--accent-bg-color);transform:scale(1.08)}
+.check-toggle.done{background:var(--accent-bg-color);border-color:var(--accent-bg-color);color:var(--accent-fg-color)}
+.check-toggle.done:hover{filter:brightness(.9)}
+
+/* ============================================================
+   STREAK BADGE
+   ============================================================ */
+.streak{display:inline-flex;align-items:center;gap:3px;font-size:9pt;font-weight:700;color:var(--orange-3)}
+.streak svg{width:13px;height:13px}
+
+/* ============================================================
+   PROGRESS BAR
+   ============================================================ */
+.progress-card{
+  background:var(--card-bg-color);border:1px solid var(--border-color);
+  border-radius:var(--radius-md);padding:var(--space-2) var(--space-3);
+  margin-bottom:var(--space-3);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.progress-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:var(--space-1)}
+.progress-title{font-size:9.5pt;font-weight:700}
+.progress-pct{font-size:9pt;opacity:var(--dim-opacity)}
+.progress-track{height:6px;background:var(--shade-color);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent-bg-color);border-radius:3px;transition:width .45s cubic-bezier(.2,0,0,1)}
+
+/* ============================================================
+   STATS GRID
+   ============================================================ */
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2);margin-bottom:var(--space-3)}
+.stat-card{
+  background:var(--card-bg-color);border:1px solid var(--border-color);
+  border-radius:var(--radius-md);padding:var(--space-2) var(--space-3);
+  box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.stat-value{font-size:24pt;font-weight:700;line-height:1;margin-bottom:3px}
+.stat-label{font-size:9pt;opacity:var(--dim-opacity)}
+
+/* ============================================================
+   HEATMAP
+   ============================================================ */
+.habit-overview{margin-bottom:var(--space-3)}
+.habit-overview-header{
+  display:flex;align-items:center;gap:var(--space-2);
+  padding:0 var(--space-2) var(--space-1)}
+.habit-overview-header .habit-name{font-weight:700;font-size:10.5pt;flex:1}
+.heatmap{
+  display:grid;grid-template-columns:repeat(28,1fr);gap:3px;
+  padding:var(--space-1) var(--space-2)}
+.heatmap-cell{
+  aspect-ratio:1;border-radius:3px;background:var(--shade-color);
+  transition:background .15s;cursor:default}
+.heatmap-cell.done{opacity:.85}
+.heatmap-cell.today{outline:2px solid var(--accent-bg-color);outline-offset:1px}
+
+/* ============================================================
+   ENTRY
+   ============================================================ */
+.entry{
+  display:block;width:100%;padding:7px 12px;border-radius:var(--radius-sm);
+  border:1px solid var(--border-color);background:var(--view-bg-color);color:var(--view-fg-color);
+  transition:border-color .15s,box-shadow .15s}
+.entry:focus{
+  border-color:var(--accent-bg-color);
+  box-shadow:0 0 0 2px color-mix(in srgb,var(--accent-bg-color) 28%,transparent)}
+.entry::placeholder{opacity:var(--dim-opacity)}
+select.entry{cursor:pointer}
+.field-label{font-size:9pt;font-weight:700;opacity:.85;margin-bottom:5px}
+.field{display:flex;flex-direction:column;gap:0;margin-bottom:var(--space-2)}
+
+/* ============================================================
+   ICON + COLOR PICKERS
+   ============================================================ */
+.icon-picker{display:flex;flex-wrap:wrap;gap:6px;padding:4px 0}
+.icon-btn{
+  width:44px;height:44px;border-radius:var(--radius-sm);
+  border:2px solid var(--border-color);background:var(--card-bg-color);
+  font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:border-color .12s,background .12s}
+.icon-btn.sel{border-color:var(--accent-bg-color);background:color-mix(in srgb,var(--accent-bg-color) 12%,transparent)}
+.color-picker{display:flex;flex-wrap:wrap;gap:8px;padding:4px 0}
+.color-dot{width:28px;height:28px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:transform .1s,box-shadow .1s}
+.color-dot.sel{box-shadow:0 0 0 2px var(--window-bg-color),0 0 0 4px var(--accent-bg-color)}
+
+/* ============================================================
+   DIALOG — bottom sheet on mobile, centered on desktop
+   ============================================================ */
+.overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.48);z-index:200;
+  display:flex;align-items:flex-end;justify-content:center;
+  animation:ov-in .18s ease}
+@keyframes ov-in{from{opacity:0}to{opacity:1}}
+
+.dialog{
+  background:var(--dialog-bg-color);color:var(--dialog-fg-color);
+  border-radius:var(--radius-lg) var(--radius-lg) 0 0;
+  padding:var(--space-3);padding-bottom:max(var(--space-3),env(safe-area-inset-bottom));
+  width:100%;max-width:620px;max-height:92dvh;overflow-y:auto;
+  animation:dlg-in .26s cubic-bezier(.2,0,0,1);
+  box-shadow:0 -4px 24px rgba(0,0,0,.24)}
+@keyframes dlg-in{from{transform:translateY(100%);opacity:.5}to{transform:translateY(0);opacity:1}}
+
+.dialog::before{
+  content:'';display:block;width:32px;height:4px;background:var(--border-color);
+  border-radius:2px;margin:-6px auto var(--space-2)}
+.dlg-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-3)}
+.dlg-title{font-size:12pt;font-weight:700}
+.dlg-footer{display:flex;gap:var(--space-1);justify-content:flex-end;margin-top:var(--space-3)}
+
+@media (min-width:640px) {
+  .overlay{align-items:center}
+  .dialog{border-radius:var(--radius-lg);max-height:85dvh;max-width:480px;animation-name:dlg-in-desktop}
+  .dialog::before{display:none}
+  @keyframes dlg-in-desktop{from{transform:scale(.95) translateY(6px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
+}
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+.toast-rack{
+  position:fixed;bottom:calc(var(--nav-h) + 8px + env(safe-area-inset-bottom,0));
+  left:50%;transform:translateX(-50%);z-index:300;pointer-events:none;
+  display:flex;flex-direction:column-reverse;align-items:center;gap:6px}
+.toast{
+  background:#3d3846;color:#fff;padding:8px 18px;border-radius:var(--radius-md);
+  font-size:10pt;box-shadow:0 4px 18px rgba(0,0,0,.32);white-space:nowrap;
+  animation:toast-in .2s ease;transition:opacity .2s,transform .2s}
+@media (prefers-color-scheme:dark){.toast{background:#4a4a52}}
+:root[data-theme="dark"] .toast{background:#4a4a52}
+@keyframes toast-in{from{opacity:0;transform:translateY(6px) translateX(-50%)}to{opacity:1;transform:translateY(0) translateX(-50%)}}
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+.empty-state{
+  display:flex;flex-direction:column;align-items:center;gap:var(--space-2);
+  padding:var(--space-4) var(--space-3);text-align:center;opacity:var(--dim-opacity)}
+.empty-state svg{width:64px;height:64px;margin-bottom:4px}
+.empty-state h3{font-size:13pt;font-weight:700}
+.empty-state p{font-size:10pt;max-width:240px}
+
+/* ============================================================
+   ADAPTIVE — desktop: tab bar moves to top
+   ============================================================ */
+@media (min-width:640px) {
+  .view-switcher{top:var(--headerbar-h);bottom:auto;height:40px;border-top:none;border-bottom:1px solid var(--headerbar-border-color);padding-bottom:0}
+  .vs-btn{flex-direction:row;gap:var(--space-1);font-size:10pt}
+  .vs-btn.active::before{top:auto;bottom:0;left:50%;transform:translateX(-50%);width:100%;height:3px;border-radius:0}
+  .main{padding-top:calc(var(--headerbar-h) + 40px + var(--space-3));padding-bottom:var(--space-4)}
+  .toast-rack{bottom:var(--space-3)}
+  .page{padding:0 var(--space-3) var(--space-3)}
+}
+</style>
+</head>
+<body>
+
+<header class="headerbar">
+  <div class="headerbar-start">
+    <button class="btn flat circular" id="btn-back" style="display:none" onclick="navBack()" title="Back">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <!-- Electron-only window controls; hidden in browser -->
+    <div id="win-controls" style="display:none; gap:2px; align-items:center">
+      <button class="btn flat circular win-btn" id="win-close" title="Close (Alt+F4)" style="color:var(--destructive-color)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <button class="btn flat circular win-btn" id="win-min" title="Minimise">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </button>
+      <button class="btn flat circular win-btn" id="win-max" title="Maximise / Restore">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="headerbar-center" id="hb-title">Sporttr</div>
+  <div class="headerbar-end">
+    <button class="btn flat circular" id="btn-add" title="Add Routine (Ctrl+N)" onclick="openAddRoutineDialog()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<nav class="view-switcher">
+  <button class="vs-btn active" data-page="today" onclick="showPage('today')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+      <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+      <line x1="3" y1="10" x2="21" y2="10"/>
+    </svg>
+    <span>Today</span>
+  </button>
+  <button class="vs-btn" data-page="overview" onclick="showPage('overview')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+    </svg>
+    <span>Overview</span>
+  </button>
+  <button class="vs-btn" data-page="settings" onclick="showPage('settings')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+    </svg>
+    <span>Settings</span>
+  </button>
+</nav>
+
+<main class="main">
+
+  <!-- TODAY -->
+  <section class="page active" id="page-today">
+    <div class="date-banner">
+      <h2 id="today-date">—</h2>
+      <p id="today-sub">Loading…</p>
+    </div>
+    <div id="progress-card" class="progress-card" style="display:none">
+      <div class="progress-row">
+        <span class="progress-title">Today's Progress</span>
+        <span class="progress-pct" id="prog-pct">0%</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+    </div>
+    <div class="section-label">Workouts</div>
+    <div class="boxed-list" id="routines-list"></div>
+    <div class="empty-state" id="empty-today" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+      </svg>
+      <h3>No routines yet</h3>
+      <p>Tap <strong>+</strong> to create your first workout routine and start training</p>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="page" id="page-overview">
+    <div class="date-banner">
+      <h2>Overview</h2>
+      <p>Your progress at a glance</p>
+    </div>
+    <div class="stats-grid" id="stats-grid"></div>
+    <div class="section-label">Habit History — Last 28 Days</div>
+    <div id="overview-list"></div>
+    <div class="empty-state" id="empty-overview" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+      </svg>
+      <h3>No data yet</h3>
+      <p>Complete some habits to see your history here</p>
+    </div>
+  </section>
+
+  <!-- SETTINGS -->
+  <section class="page" id="page-settings">
+    <div class="date-banner"><h2>Settings</h2></div>
+
+    <div class="section-label">Appearance</div>
+    <div class="boxed-list" style="margin-bottom:var(--space-3)">
+      <div class="row">
+        <div class="row-content">
+          <div class="row-title">Color Scheme</div>
+          <div class="row-subtitle">Follow system, or force light/dark</div>
+        </div>
+        <div class="row-end">
+          <select class="entry" style="width:auto" id="sel-theme" onchange="applyTheme(this.value)">
+            <option value="auto">Auto</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">AI Coaching</div>
+    <div class="boxed-list" style="margin-bottom:var(--space-3)">
+      <div class="row">
+        <div class="row-content">
+          <div class="row-title">AI Provider</div>
+          <div class="row-subtitle">Choose your AI service provider</div>
+        </div>
+        <div class="row-end">
+          <select class="entry" id="ai-provider" style="width:auto" onchange="saveAiProvider()">
+            <option value="ollama">Ollama</option>
+            <option value="openai">OpenAI Compatible</option>
+          </select>
+        </div>
+      </div>
+      <div class="row" id="ai-api-key-row">
+        <div class="row-content">
+          <div class="row-title">API Key</div>
+          <div class="row-subtitle">For AI coaching during workouts</div>
+        </div>
+        <div class="row-end">
+          <input class="entry" type="password" id="ai-api-key" placeholder="Enter your API key" style="width:200px" onchange="saveAiApiKey()">
+        </div>
+      </div>
+      <div class="row" id="ai-model-row" style="display:none">
+        <div class="row-content">
+          <div class="row-title">Model</div>
+          <div class="row-subtitle">Select the AI model to use</div>
+        </div>
+        <div class="row-end">
+          <select class="entry" id="ai-model" style="width:auto" onchange="saveAiModel()">
+            <option value="gemini-3-flash-preview">Gemini 3 Flash Preview (Ollama)</option>
+            <option value="gpt-5-nano">GPT-5 Nano (OpenAI)</option>
+          </select>
+        </div>
+      </div>
+      <div class="row" id="ai-base-url-row" style="display:none">
+        <div class="row-content">
+          <div class="row-title">Base URL</div>
+          <div class="row-subtitle">API endpoint (for OpenAI compatible services)</div>
+        </div>
+        <div class="row-end">
+          <input class="entry" type="text" id="ai-base-url" placeholder="https://api.openai.com/v1" style="width:200px" onchange="saveAiBaseUrl()">
+        </div>
+      </div>
+      <div class="row activatable" onclick="exportData()">
+        <div class="row-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+        </div>
+        <div class="row-content">
+          <div class="row-title">Export Data</div>
+          <div class="row-subtitle">Download as habittr-backup.json</div>
+        </div>
+        <div class="row-end"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.4"><polyline points="9 18 15 12 9 6"/></svg></div>
+      </div>
+      <div class="row activatable" onclick="document.getElementById('import-input').click()">
+        <div class="row-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+        </div>
+        <div class="row-content">
+          <div class="row-title">Import Data</div>
+          <div class="row-subtitle">Restore from a JSON backup</div>
+        </div>
+        <div class="row-end"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.4"><polyline points="9 18 15 12 9 6"/></svg></div>
+        <input type="file" id="import-input" accept=".json" style="display:none" onchange="importData(event)">
+      </div>
+      <div class="row activatable" onclick="confirmClear()" style="color:var(--destructive-color)">
+        <div class="row-icon" style="color:var(--destructive-color)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/>
+            <path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/>
+          </svg>
+        </div>
+        <div class="row-content">
+          <div class="row-title">Clear All Data</div>
+          <div class="row-subtitle" style="color:inherit;opacity:.7">Permanently delete everything</div>
+        </div>
+        <div class="row-end"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.4"><polyline points="9 18 15 12 9 6"/></svg></div>
+      </div>
+    </div>
+
+    <div class="section-label">About</div>
+    <div class="boxed-list" style="margin-bottom:var(--space-4)">
+      <div class="row">
+        <div class="row-icon" style="font-size:22px">🗓</div>
+        <div class="row-content">
+<div class="row-title">Sporttr</div>
+           <div class="row-subtitle">A GNOME-style cross-platform fitness and workout tracker</div>
+        </div>
+        <div class="row-end" style="opacity:.45;font-size:9pt">v1.2</div>
+      </div>
+      <div class="row">
+        <div class="row-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <div class="row-content">
+          <div class="row-title">Dreamt up by Jeremy Rende</div>
+          <div class="row-subtitle">Built using OpenCode and Ollama</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="row-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <div class="row-content">
+          <div class="row-title">Build Date</div>
+          <div class="row-subtitle">April 26, 2026</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ROUTINE DIALOG -->
+<div class="overlay" id="routine-dlg" style="display:none" onclick="overlayClose(event,'routine-dlg')">
+  <div class="dialog" onclick="event.stopPropagation()">
+    <div class="dlg-header">
+      <span class="dlg-title" id="routine-dlg-title">New Routine</span>
+      <button class="btn flat circular" onclick="closeDialog('routine-dlg')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="field">
+      <div class="field-label">Routine Name</div>
+      <input class="entry" type="text" id="routine-name" placeholder="e.g. Upper Body, Leg Day..." maxlength="50">
+    </div>
+    <div class="field">
+      <div class="field-label">Exercises</div>
+      <div id="exercise-list" style="display:flex; flex-direction:column; gap:var(--space-2); margin-bottom:var(--space-2)"></div>
+      <button class="btn flat" style="width:100%; text-align:left; opacity:.7" onclick="addExerciseField()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:4px">
+          <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+        </svg> Add Exercise
+      </button>
+    </div>
+    <div class="dlg-footer">
+      <button class="btn" onclick="closeDialog('routine-dlg')">Cancel</button>
+      <button class="btn suggested-action" id="routine-save-btn" onclick="saveRoutine()">Save Routine</button>
+    </div>
+  </div>
+</div>
+
+<!-- WORKOUT SESSION VIEW -->
+<div class="overlay" id="session-dlg" style="display:none" onclick="overlayClose(event,'session-dlg')">
+  <div class="dialog" onclick="event.stopPropagation()" style="max-width:500px">
+    <div class="dlg-header">
+      <span class="dlg-title" id="session-title">Workout Session</span>
+      <button class="btn flat circular" onclick="closeDialog('session-dlg')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div id="session-exercises" class="boxed-list" style="margin-bottom:var(--space-3)"></div>
+    <div class="dlg-footer">
+      <button class="btn suggested-action" onclick="startWorkoutFlow()">Start Workout</button>
+    </div>
+  </div>
+</div>
+
+<!-- WORKOUT FLOW DIALOG -->
+<div class="overlay" id="workout-flow-dlg" style="display:none" onclick="overlayClose(event,'workout-flow-dlg')">
+  <div class="dialog" onclick="event.stopPropagation()" style="max-width:500px">
+    <div class="dlg-header">
+      <span class="dlg-title" id="workout-flow-title">Workout</span>
+      <button class="btn flat circular" onclick="closeWorkoutFlow()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div id="current-exercise" style="text-align:center; padding:var(--space-3) 0">
+      <h3 id="exercise-name" style="font-size:18pt; margin-bottom:var(--space-1)">Exercise Name</h3>
+      <p id="exercise-details" style="font-size:12pt; opacity:0.8; margin-bottom:var(--space-3)">Details</p>
+      <div id="ai-tip-container" style="background:var(--shade-color); border-radius:var(--radius-sm); padding:var(--space-2); margin:var(--space-2) 0; display:none">
+        <div style="display:flex; align-items:center; gap:var(--space-1); margin-bottom:var(--space-1)">
+          <span style="font-weight:bold; color:var(--accent-color)">AI Coach:</span>
+          <span style="font-size:9pt; opacity:0.7">(model)</span>
+        </div>
+        <p id="ai-tip-text" style="margin:0; text-align:left">Tip will appear here...</p>
+      </div>
+    </div>
+    <div class="dlg-footer" style="justify-content:space-between">
+      <button class="btn" id="prev-exercise-btn" onclick="previousExercise()">Previous</button>
+      <button class="btn suggested-action" id="next-exercise-btn" onclick="nextExercise()">Next</button>
+    </div>
+  </div>
+</div>
+
+<!-- POST-WORKOUT EVALUATION -->
+<div class="overlay" id="eval-dlg" style="display:none" onclick="overlayClose(event,'eval-dlg')">
+  <div class="dialog" onclick="event.stopPropagation()" style="max-width:400px">
+    <div class="dlg-header">
+      <span class="dlg-title">Workout Complete!</span>
+    </div>
+    <div class="field">
+      <div class="field-label">Difficulty (1-5)</div>
+      <div id="diff-btns" style="display:flex; gap:var(--space-1); justify-content:center; margin-bottom:var(--space-2)"></div>
+    </div>
+    <div class="field">
+      <div class="field-label">How do you feel?</div>
+      <select class="entry" id="eval-feeling">
+        <option value="Amazing">Amazing</option>
+        <option value="Good">Good</option>
+        <option value="Tired">Tired</option>
+        <option value="Exhausted">Exhausted</option>
+        <option value="Sore">Sore</option>
+      </select>
+    </div>
+    <div class="dlg-footer">
+      <button class="btn suggested-action" onclick="saveEval()">Save Log</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-rack" id="toast-rack"></div>
+
+<script>
+'use strict';
+
+const ICONS = ['✅','💧','🏃','📚','🧘','💊','🥗','🛌','🏋️','✍️',
+               '🎯','🧹','🚴','🍎','☕','🌅','🎵','🐕','💻','🧠',
+               '❤️','⭐','🔥','🌱','🏊','🎨','🥤','📝','🎲','🌙'];
+const COLORS = {
+  blue:'#3584e4',teal:'#2190a4',green:'#3a944a',orange:'#ed5b00',
+  red:'#e62d42',purple:'#9141ac',pink:'#d56199',slate:'#6f8396'
+};
+
+let db        = { version:1, routines:[], logs:[], lastModified:null, aiProvider:'ollama', aiApiKey:null, aiModel:'gemini-3-flash-preview', aiBaseUrl:'https://api.openai.com/v1' };
+let editingId = null;
+let selIcon   = '✅';
+let selColor  = 'blue';
+
+// ── Date helpers ──────────────────────────────────────────────
+const todayKey = () => new Date().toISOString().split('T')[0];
+
+function dateKey(daysAgo=0) {
+  const d = new Date(); d.setDate(d.getDate()-daysAgo);
+  return d.toISOString().split('T')[0];
+}
+function formatFull(key) {
+  return new Date(key+'T12:00:00').toLocaleDateString(undefined,
+    {weekday:'long',month:'long',day:'numeric'});
+}
+function getStreak(routineId) {
+  const logs = db.logs.filter(l => l.routineId === routineId);
+  const done = new Set(logs.map(l => l.date));
+  let streak=0, i=0;
+  if (!done.has(dateKey(0))) i=1;
+  while (done.has(dateKey(i))) { streak++; i++; }
+  return streak;
+}
+function uid() {
+  return crypto.randomUUID?.() || Date.now().toString(36)+Math.random().toString(36).slice(2);
+}
+function esc(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── Storage ───────────────────────────────────────────────────
+function save() {
+  db.lastModified = new Date().toISOString();
+  localStorage.setItem('sporttr-db-v1', JSON.stringify(db));
+}
+function load() {
+  try { 
+    const r=localStorage.getItem('sporttr-db-v1'); 
+    if(r) {
+      const parsed = JSON.parse(r);
+      // Ensure db has all required properties
+      db = {
+        version: 1,
+        routines: [],
+        logs: [],
+        lastModified: null,
+        aiProvider: 'ollama',
+        aiApiKey: null,
+        aiModel: 'gemini-3-flash-preview',
+        aiBaseUrl: 'https://api.openai.com/v1',
+        ...parsed
+      };
+      
+      // Backward compatibility: migrate ollamaApiKey to aiApiKey if it exists
+      if (parsed.ollamaApiKey && !parsed.aiApiKey) {
+        db.aiApiKey = parsed.ollamaApiKey;
+        db.aiProvider = 'ollama';
+      }
+    } 
+  } catch(_){}
+}
+
+// ── Render: Today ─────────────────────────────────────────────
+function renderToday() {
+  const tk    = todayKey();
+  const list  = document.getElementById('routines-list');
+  const empty = document.getElementById('empty-today');
+  const progC = document.getElementById('progress-card');
+
+  document.getElementById('today-date').textContent = formatFull(tk);
+
+  if (!db.routines.length) {
+    list.style.display='none'; empty.style.display=''; progC.style.display='none';
+    document.getElementById('today-sub').textContent = 'Start building your fitness routines today';
+    return;
+  }
+  list.style.display=''; empty.style.display='none'; progC.style.display='';
+
+  const logsToday = db.logs.filter(l => l.date === tk);
+  const doneCount = logsToday.length;
+  const total     = db.routines.length;
+  const pct       = Math.round(doneCount/total*100);
+
+  document.getElementById('today-sub').textContent =
+    doneCount===total ? '🎉 All routines completed!' : `${doneCount} of ${total} completed today`;
+  document.getElementById('prog-pct').textContent  = `${pct}%`;
+  document.getElementById('prog-fill').style.width = `${pct}%`;
+
+  list.innerHTML='';
+  db.routines.forEach(routine => {
+    const isDone = db.logs.some(l => l.routineId === routine.id && l.date === tk);
+    const streak = getStreak(routine.id);
+    const row    = document.createElement('div');
+    row.className = `row${isDone?' row-done':''}`;
+    row.innerHTML = `
+      <div class="row-icon" style="background:color-mix(in srgb,var(--accent-bg-color) 16%,transparent)">
+        <span style="font-size:20px">🏋️</span>
+      </div>
+      <div class="row-content">
+        <div class="row-title">${esc(routine.name)}</div>
+        <div class="row-subtitle">${streak>0
+          ? `<span class="streak"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>${streak} day streak</span>`
+          : 'No streak yet'}</div>
+      </div>
+      <div class="row-end">
+        <button class="btn flat circular" title="Edit" onclick="openEditRoutineDialog('${routine.id}')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+          </svg>
+        </button>
+        <button class="check-toggle${isDone?' done':''}" onclick="startSession('${routine.id}')"
+          title="Start Session">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 11 12 14 15 11"/><polyline points="9 17 12 20 15 17"/>
+          </svg>
+        </button>
+      </div>`;
+    list.appendChild(row);
+  });
+}
+
+// ── Render: Overview ──────────────────────────────────────────
+function renderOverview() {
+  const tk      = todayKey();
+  const statsEl = document.getElementById('stats-grid');
+  const listEl  = document.getElementById('overview-list');
+  const emptyEl = document.getElementById('empty-overview');
+
+  const logsToday = db.logs.filter(l => l.date === tk);
+  const totalRoutines = db.routines.length;
+  const allLogs = db.logs.length;
+  const maxStreak = db.routines.reduce((m, r)=>Math.max(m, getStreak(r.id)), 0);
+  
+  // Calculate average difficulty
+  const avgDifficulty = allLogs > 0 ? 
+    (db.logs.reduce((sum, log) => sum + log.difficulty, 0) / allLogs).toFixed(1) : 
+    '0.0';
+
+  statsEl.innerHTML = `
+    <div class="stat-card"><div class="stat-value" style="color:var(--accent-color)">${logsToday.length}/${totalRoutines}</div><div class="stat-label">Completed Today</div></div>
+    <div class="stat-card"><div class="stat-value" style="color:var(--orange-3)">${maxStreak}</div><div class="stat-label">Best Streak</div></div>
+    <div class="stat-card"><div class="stat-value">${totalRoutines}</div><div class="stat-label">Routines</div></div>
+    <div class="stat-card"><div class="stat-value">${avgDifficulty}</div><div class="stat-label">Avg. Difficulty</div></div>`;
+
+  if (!totalRoutines) { listEl.innerHTML=''; emptyEl.style.display=''; return; }
+  emptyEl.style.display='none';
+
+  const days = Array.from({length:28},(_,i)=>dateKey(27-i));
+  listEl.innerHTML='';
+  db.routines.forEach(routine => {
+    const doneS = new Set(db.logs.filter(l => l.routineId === routine.id).map(l => l.date));
+    const strk  = getStreak(routine.id);
+    const cells = days.map(d => {
+      const fill = doneS.has(d) ? `style="background:var(--accent-bg-color)"` : '';
+      const cls  = `heatmap-cell${doneS.has(d)?' done':''}${d===tk?' today':''}`;
+      return `<div class="${cls}" ${fill} title="${d}"></div>`;
+    }).join('');
+    const sec = document.createElement('div');
+    sec.className='habit-overview';
+    sec.innerHTML = `
+      <div class="habit-overview-header">
+        <span style="font-size:20px">🏋️</span>
+        <span class="habit-name">${esc(routine.name)}</span>
+        ${strk>0?`<span class="streak"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>${strk}</span>`:''}
+        <button class="btn flat" style="font-size:9pt;padding:2px 8px;min-height:unset;color:var(--destructive-color)"
+          onclick="confirmDeleteRoutine('${routine.id}')">Delete</button>
+      </div>
+      <div class="heatmap">${cells}</div>`;
+    listEl.appendChild(sec);
+  });
+}
+
+// ── Navigation ────────────────────────────────────────────────
+const PAGE_TITLES = { today:'Sporttr', overview:'Overview', settings:'Settings' };
+
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(`page-${name}`).classList.add('active');
+  document.querySelectorAll('.vs-btn').forEach(b=>b.classList.toggle('active',b.dataset.page===name));
+  document.getElementById('hb-title').textContent = PAGE_TITLES[name]||'Sporttr';
+  document.getElementById('btn-add').style.display = name==='today' ? '' : 'none';
+  if (name==='overview') renderOverview();
+}
+function navBack() {}
+
+// ── Routine actions ─────────────────────────────────────────────
+function openAddRoutineDialog() {
+  editingId=null;
+  document.getElementById('routine-name').value='';
+  document.getElementById('routine-dlg-title').textContent='New Routine';
+  document.getElementById('routine-save-btn').textContent='Save Routine';
+  document.getElementById('exercise-list').innerHTML='';
+  addExerciseField();
+  document.getElementById('routine-dlg').style.display='flex';
+  setTimeout(()=>document.getElementById('routine-name').focus(),80);
+}
+
+function openEditRoutineDialog(id) {
+  const r=db.routines.find(r=>r.id===id); if(!r) return;
+  editingId=id;
+  document.getElementById('routine-name').value=r.name;
+  document.getElementById('routine-dlg-title').textContent='Edit Routine';
+  document.getElementById('routine-save-btn').textContent='Save Changes';
+  document.getElementById('exercise-list').innerHTML='';
+  r.exercises.forEach(ex => addExerciseField(ex.name, ex.sets, ex.goal, '', ex.modifier));
+  document.getElementById('routine-dlg').style.display='flex';
+  setTimeout(()=>document.getElementById('routine-name').focus(),80);
+}
+
+function addExerciseField(name='', sets=3, reps='', duration='', modifier='') {
+  const container = document.getElementById('exercise-list');
+  const div = document.createElement('div');
+  div.className = 'row';
+  div.style.cssText = 'background:var(--view-bg-color); border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:var(--space-1) var(--space-2); flex-direction:column; align-items:flex-start';
+  div.innerHTML = `
+    <div style="width:100%;">
+      <input class="entry" type="text" placeholder="Exercise name" value="${esc(name)}" style="width:100%">
+    </div>
+    <div style="display:flex; gap:var(--space-1); align-items:center; width:100%; margin-top:var(--space-1)">
+      <span style="font-size:9pt; opacity:.7">Sets:</span>
+      <input class="entry" type="number" value="${sets}" style="width:60px" placeholder="3">
+      <select class="entry" style="width:auto; margin-left:var(--space-1)">
+        <option value="reps">Reps</option>
+        <option value="duration">Duration</option>
+      </select>
+      <input class="entry" type="text" value="${reps}" style="flex:1" placeholder="e.g. 10 or 30s">
+    </div>
+    <div style="display:flex; gap:var(--space-1); align-items:center; width:100%; margin-top:var(--space-1)">
+      <span style="font-size:9pt; opacity:.7">Modifier:</span>
+      <input class="entry" type="text" value="${esc(modifier)}" style="flex:1" placeholder="e.g. Weight, Band, Level">
+      <button class="btn flat circular" onclick="this.parentElement.parentElement.parentElement.remove()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>`;
+  container.appendChild(div);
+  
+  // Set selector event listener
+  const setTypeSelect = div.querySelector('select');
+  const repsInput = div.querySelectorAll('input')[2];
+  setTypeSelect.addEventListener('change', function() {
+    repsInput.placeholder = this.value === 'reps' ? 'e.g. 10' : 'e.g. 30s';
+  });
+}
+
+function saveRoutine() {
+  const name = document.getElementById('routine-name').value.trim();
+  if (!name) { document.getElementById('routine-name').focus(); return; }
+  
+  const exElements = document.getElementById('exercise-list').children;
+  const exercises = [];
+  for (let el of exElements) {
+    const inputs = el.querySelectorAll('input');
+    const select = el.querySelector('select');
+    if (inputs[0].value.trim()) {
+      exercises.push({ 
+        name: inputs[0].value.trim(), 
+        sets: inputs[1].value || 3,
+        type: select ? select.value : 'reps',
+        goal: inputs[2].value,
+        modifier: inputs[3] ? inputs[3].value : ''
+      });
+    }
+  }
+  
+  if (!exercises.length) {
+    toast('Please add at least one exercise');
+    return;
+  }
+
+  if (editingId) {
+    const r = db.routines.find(r => r.id === editingId);
+    if (r) { r.name = name; r.exercises = exercises; }
+    toast('Routine updated');
+  } else {
+    db.routines.push({ id: uid(), name, exercises, created: todayKey() });
+    toast('Routine added!');
+  }
+  save(); renderToday(); closeDialog('routine-dlg');
+}
+
+function confirmDeleteRoutine(id) {
+  const r = db.routines.find(r => r.id === id); if(!r) return;
+  showConfirm(`Delete "${r.name}"?`,
+    'This will remove the routine and its history.',
+    'Delete', () => {
+      db.routines = db.routines.filter(x => x.id !== id);
+      db.logs = db.logs.filter(x => x.routineId !== id);
+      save(); renderToday(); renderOverview();
+      toast('Routine deleted');
+    });
+}
+
+// ── Session Management ──────────────────────────────────────────
+let activeRoutineId = null;
+let activeExercises = [];
+let currentExerciseIndex = 0;
+let aiTipsCache = {}; // Cache for AI tips
+
+function startSession(id) {
+  const r = db.routines.find(r => r.id === id); if (!r) return;
+  activeRoutineId = id;
+  activeExercises = r.exercises.map(ex => ({ ...ex, done: false }));
+  
+  document.getElementById('session-title').textContent = r.name;
+  const list = document.getElementById('session-exercises');
+  list.innerHTML = '';
+  
+  activeExercises.forEach((ex, idx) => {
+    const goalDisplay = ex.type === 'duration' ? `${ex.goal}` : `${ex.sets} sets × ${ex.goal} reps`;
+    const modifierDisplay = ex.modifier ? ` (${ex.modifier})` : '';
+    const row = document.createElement('div');
+    row.className = `row ${ex.done ? 'row-done' : ''}`;
+    row.innerHTML = `
+      <div class="row-content">
+        <div class="row-title">${esc(ex.name)}</div>
+        <div class="row-subtitle">${goalDisplay}${modifierDisplay}</div>
+      </div>
+      <div class="row-end">
+        <button class="check-toggle ${ex.done ? 'done' : ''}" onclick="toggleExercise(${idx})">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </button>
+      </div>`;
+    list.appendChild(row);
+  });
+  
+  document.getElementById('session-dlg').style.display = 'flex';
+}
+
+function startWorkoutFlow() {
+  closeDialog('session-dlg');
+  currentExerciseIndex = 0;
+  document.getElementById('workout-flow-dlg').style.display = 'flex';
+  showCurrentExercise();
+}
+
+function closeWorkoutFlow() {
+  document.getElementById('workout-flow-dlg').style.display = 'none';
+  // Reset to exercise list view
+  document.getElementById('session-dlg').style.display = 'flex';
+}
+
+function showCurrentExercise() {
+  if (currentExerciseIndex >= activeExercises.length) {
+    // Workout completed
+    closeWorkoutFlow();
+    document.getElementById('eval-dlg').style.display = 'flex';
+    renderEvalButtons();
+    return;
+  }
+  
+  const exercise = activeExercises[currentExerciseIndex];
+  document.getElementById('workout-flow-title').textContent = `Workout (${currentExerciseIndex + 1}/${activeExercises.length})`;
+  document.getElementById('exercise-name').textContent = exercise.name;
+  
+  const goalDisplay = exercise.type === 'duration' ? `${exercise.goal}` : `${exercise.sets} sets × ${exercise.goal} reps`;
+  const modifierDisplay = exercise.modifier ? ` with ${exercise.modifier}` : '';
+  document.getElementById('exercise-details').textContent = `${goalDisplay}${modifierDisplay}`;
+  
+  // Show AI tip if API key is available
+  const aiTipContainer = document.getElementById('ai-tip-container');
+  if (db.aiApiKey) {
+    aiTipContainer.style.display = 'block';
+    // Update model display
+    const modelDisplay = document.querySelector('#ai-tip-container span:nth-child(2)');
+    if (modelDisplay) {
+      let modelName = db.aiModel;
+      if (db.aiProvider === 'ollama') {
+        modelName = 'gemini-3-flash-preview';
+      } else if (db.aiProvider === 'openai') {
+        modelName = 'gpt-5-nano';
+      }
+      modelDisplay.textContent = `(${modelName})`;
+    }
+    getAITipForExercise(exercise);
+  } else {
+    aiTipContainer.style.display = 'none';
+  }
+  
+  // Update navigation buttons
+  document.getElementById('prev-exercise-btn').disabled = currentExerciseIndex === 0;
+  document.getElementById('next-exercise-btn').textContent = 
+    currentExerciseIndex === activeExercises.length - 1 ? 'Finish Workout' : 'Next';
+}
+
+async function getAITipForExercise(exercise) {
+  const tipElement = document.getElementById('ai-tip-text');
+  const cacheKey = `${exercise.name}-${exercise.modifier || 'none'}`;
+  
+  // Check cache first
+  if (aiTipsCache[cacheKey]) {
+    tipElement.textContent = aiTipsCache[cacheKey];
+    return;
+  }
+  
+  tipElement.textContent = 'Generating tip...';
+  
+  try {
+    // Simulate network delay (at least 5 seconds as requested)
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    
+    // Call AI API if key is available
+    if (db.aiApiKey) {
+      const prompt = `Provide a one or two sentence tip for performing ${exercise.name}${exercise.modifier ? ` with ${exercise.modifier}` : ''}. Focus on form, technique, or safety.`;
+      
+      // Determine which model to use based on provider
+      let model = db.aiModel;
+      if (db.aiProvider === 'ollama') {
+        model = 'gemini-3-flash-preview';
+      } else if (db.aiProvider === 'openai') {
+        model = 'gpt-5-nano';
+      }
+      
+      // Update model display in UI
+      document.querySelector('#ai-tip-container span:nth-child(2)').textContent = `(${model})`;
+      
+      // In a real implementation, this would call the appropriate API
+      // Since we can't make actual network requests in this environment, 
+      // we'll use simulated responses based on exercise type
+      
+      const exerciseType = exercise.name.toLowerCase();
+      let tip = "";
+      
+      if (exerciseType.includes('push') || exerciseType.includes('press')) {
+        tip = "Keep your core engaged and maintain a straight line from head to heels. Focus on controlled movement throughout the entire range of motion.";
+      } else if (exerciseType.includes('squat') || exerciseType.includes('lunge')) {
+        tip = "Keep your chest up and knees tracking over toes. Descend until thighs are parallel to ground or lower if mobility allows.";
+      } else if (exerciseType.includes('pull') || exerciseType.includes('row')) {
+        tip = "Squeeze your shoulder blades together at the top of the movement. Keep your core tight to prevent arching your back.";
+      } else if (exerciseType.includes('curl')) {
+        tip = "Keep your elbows stationary and close to your sides. Control the weight on the way down to maximize time under tension.";
+      } else if (exerciseType.includes('run') || exerciseType.includes('cardio')) {
+        tip = "Maintain an upright posture and land midfoot under your center of gravity. Focus on cadence and breathing rhythm.";
+      } else {
+        // Generic tip
+        const genericTips = [
+          "Focus on controlled movement during each rep to maximize muscle engagement.",
+          "Keep your core tight throughout the exercise to maintain proper form.",
+          "Take a deep breath before each set and exhale during the exertion phase.",
+          "Make sure to warm up properly before attempting your working sets.",
+          "Maintain steady breathing throughout the exercise to optimize oxygen flow.",
+          "Focus on the mind-muscle connection to get the most from each repetition.",
+          "Control the eccentric (lowering) portion of the movement for better results."
+        ];
+        tip = genericTips[Math.floor(Math.random() * genericTips.length)];
+      }
+      
+      aiTipsCache[cacheKey] = tip;
+      tipElement.textContent = tip;
+    } else {
+      // Use simulated tips when no API key
+      const simulatedTips = [
+        "Focus on controlled movement during each rep to maximize muscle engagement.",
+        "Keep your core tight throughout the exercise to maintain proper form.",
+        "Take a deep breath before each set and exhale during the exertion phase.",
+        "Make sure to warm up properly before attempting your working sets.",
+        "Maintain steady breathing throughout the exercise to optimize oxygen flow.",
+        "Focus on the mind-muscle connection to get the most from each repetition.",
+        "Control the eccentric (lowering) portion of the movement for better results."
+      ];
+      
+      const tip = simulatedTips[Math.floor(Math.random() * simulatedTips.length)];
+      aiTipsCache[cacheKey] = tip;
+      tipElement.textContent = tip;
+    }
+  } catch (error) {
+    tipElement.textContent = 'Failed to generate tip. Please check your API settings.';
+  }
+}
+
+function nextExercise() {
+  if (currentExerciseIndex < activeExercises.length - 1) {
+    currentExerciseIndex++;
+    showCurrentExercise();
+  } else {
+    // Finish workout
+    closeWorkoutFlow();
+    completeSession();
+  }
+}
+
+function previousExercise() {
+  if (currentExerciseIndex > 0) {
+    currentExerciseIndex--;
+    showCurrentExercise();
+  }
+}
+
+function toggleExercise(idx) {
+  activeExercises[idx].done = !activeExercises[idx].done;
+  const rows = document.getElementById('session-exercises').children;
+  rows[idx].className = `row ${activeExercises[idx].done ? 'row-done' : ''}`;
+  rows[idx].querySelector('.check-toggle').className = `check-toggle ${activeExercises[idx].done ? 'done' : ''}`;
+}
+
+function completeSession() {
+  closeDialog('session-dlg');
+  document.getElementById('eval-dlg').style.display = 'flex';
+  renderEvalButtons();
+}
+
+function renderEvalButtons() {
+  const container = document.getElementById('diff-btns');
+  container.innerHTML = [1,2,3,4,5].map(n => 
+    `<button class="btn ${selDiff===n ? ' suggested-action' : ''}" onclick="setDiff(${n})">${n}</button>`
+  ).join('');
+}
+
+let selDiff = 3;
+function setDiff(n) {
+  selDiff = n;
+  renderEvalButtons();
+}
+
+function saveEval() {
+  const feeling = document.getElementById('eval-feeling').value;
+  db.logs.push({
+    id: uid(),
+    routineId: activeRoutineId,
+    date: todayKey(),
+    difficulty: selDiff,
+    feeling: feeling
+  });
+  save();
+  renderToday();
+  closeDialog('eval-dlg');
+  toast('Workout logged!');
+}
+
+function saveAiProvider() {
+  const provider = document.getElementById('ai-provider').value;
+  db.aiProvider = provider;
+  save();
+  toggleAiSettings();
+  toast('AI provider saved');
+}
+
+function saveAiApiKey() {
+  const key = document.getElementById('ai-api-key').value;
+  db.aiApiKey = key || null;
+  save();
+  toast('API key saved');
+}
+
+function saveAiModel() {
+  const model = document.getElementById('ai-model').value;
+  db.aiModel = model;
+  save();
+  toast('Model saved');
+}
+
+function saveAiBaseUrl() {
+  const url = document.getElementById('ai-base-url').value;
+  db.aiBaseUrl = url || 'https://api.openai.com/v1';
+  save();
+  toast('Base URL saved');
+}
+
+function toggleAiSettings() {
+  const provider = document.getElementById('ai-provider').value;
+  document.getElementById('ai-model-row').style.display = provider === 'ollama' ? 'none' : '';
+  document.getElementById('ai-base-url-row').style.display = provider === 'ollama' ? 'none' : '';
+  
+  // Update model options based on provider
+  const modelSelect = document.getElementById('ai-model');
+  if (provider === 'ollama') {
+    modelSelect.options[0].text = 'Gemini 3 Flash Preview (Ollama)';
+    modelSelect.options[1].text = 'GPT-5 Nano (OpenAI)';
+    modelSelect.value = 'gemini-3-flash-preview';
+  } else {
+    modelSelect.options[0].text = 'Gemini 3 Flash Preview (Ollama)';
+    modelSelect.options[1].text = 'GPT-5 Nano (OpenAI)';
+    modelSelect.value = 'gpt-5-nano';
+  }
+}
+
+// ── Dialogs ───────────────────────────────────────────────────
+function closeDialog(id)       { document.getElementById(id).style.display='none'; }
+function overlayClose(e,id)    { if (e.target===e.currentTarget) closeDialog(id); }
+
+function showConfirm(title,msg,okLabel,onOk) {
+  document.getElementById('confirm-title').textContent=title;
+  document.getElementById('confirm-msg').textContent=msg;
+  const btn=document.getElementById('confirm-ok');
+  btn.textContent=okLabel;
+  btn.onclick=()=>{ onOk(); closeDialog('confirm-dlg'); };
+  document.getElementById('confirm-dlg').style.display='flex';
+}
+
+function confirmClear() {
+  showConfirm('Clear All Data',
+    'This will permanently delete all routines and their history. This cannot be undone.',
+    'Clear', () => {
+      db={version:1, routines:[], logs:[], lastModified: new Date().toISOString(), ollamaApiKey: db.ollamaApiKey};
+      save(); renderToday(); renderOverview();
+      toast('All data cleared');
+    });
+}
+
+// ── Toast ─────────────────────────────────────────────────────
+function toast(msg,ms=2600) {
+  const rack=document.getElementById('toast-rack');
+  const el=document.createElement('div'); el.className='toast'; el.textContent=msg;
+  rack.appendChild(el);
+  setTimeout(()=>{ el.style.opacity='0'; el.style.transform='translateY(4px) translateX(-50%)';
+    setTimeout(()=>el.remove(),220); },ms);
+}
+
+// ── Export / Import ───────────────────────────────────────────
+function exportData() {
+  // Don't export the API key for security
+  const exportDb = {...db, aiApiKey: undefined};
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(exportDb,null,2)],{type:'application/json'}));
+  a.download='sporttr-backup.json'; a.click(); URL.revokeObjectURL(a.href);
+  toast('Data exported');
+}
+function importData(e) {
+  const file=e.target.files[0]; if(!file) return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    try {
+      const p=JSON.parse(ev.target.result);
+      if (!Array.isArray(p.routines)) throw new Error();
+      showConfirm('Import Data','This will replace all current data with the imported file. Continue?',
+        'Import', () => { 
+          // Preserve API key during import
+          const currentApiKey = db.aiApiKey;
+          db=p; 
+          db.aiApiKey = currentApiKey;
+          save(); renderToday(); renderOverview(); toast('Data imported'); 
+        });
+    } catch(_){ toast('⚠️ Invalid file format'); }
+  };
+  r.readAsText(file); e.target.value='';
+}
+
+// ── Theme ─────────────────────────────────────────────────────
+function applyTheme(scheme) {
+  localStorage.setItem('theme',scheme);
+  const r=document.documentElement; r.removeAttribute('data-theme');
+  if (scheme==='dark')  r.setAttribute('data-theme','dark');
+  if (scheme==='light') r.setAttribute('data-theme','light');
+}
+
+// ── Keyboard shortcuts ────────────────────────────────────────
+document.addEventListener('keydown',e=>{
+  if (e.key==='Escape') { 
+    closeDialog('routine-dlg'); 
+    closeDialog('eval-dlg'); 
+    closeDialog('session-dlg');
+    closeDialog('workout-flow-dlg');
+    closeDialog('confirm-dlg'); 
+  }
+  if ((e.ctrlKey||e.metaKey) && e.key==='n') { 
+    e.preventDefault(); 
+    if (document.getElementById('workout-flow-dlg').style.display !== 'flex') {
+      openAddRoutineDialog(); 
+    }
+  }
+});
+
+// ── Init ──────────────────────────────────────────────────────
+(function init() {
+  load();
+  const t=localStorage.getItem('theme')||'auto';
+  document.getElementById('sel-theme').value=t;
+  applyTheme(t);
+  
+  // Load AI settings if they exist
+  if (db.aiProvider) {
+    document.getElementById('ai-provider').value = db.aiProvider;
+  }
+  if (db.aiApiKey) {
+    document.getElementById('ai-api-key').value = db.aiApiKey;
+  }
+  if (db.aiModel) {
+    document.getElementById('ai-model').value = db.aiModel;
+  }
+  if (db.aiBaseUrl) {
+    document.getElementById('ai-base-url').value = db.aiBaseUrl;
+  }
+  
+  // Show/hide model and base URL rows based on provider
+  toggleAiSettings();
+  
+  renderToday();
+})();
+</script>
+</body>
+</html>
